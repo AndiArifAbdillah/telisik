@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Telisik · Live on Monad testnet</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --paper: #F2F5F4; --sheet: #FFFFFF; --ink: #11262A; --muted: #52686C; --rule: #D6E0DE; --rule-strong: #A9BBB8;
+  --accent: #5B45E0; --good: #1D7F53; --good-soft: #E1F2E9; --warn: #9A6300; --warn-soft: #FAEFD7; --bad: #BE3328; --bad-soft: #FAE4E1;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #0E1618; --sheet: #152124; --ink: #E3EBE9; --muted: #95AAA7; --rule: #26373B; --rule-strong: #3D5357;
+    --accent: #A898FF; --good: #57C891; --good-soft: #12332A; --warn: #EFB64E; --warn-soft: #382B10; --bad: #FF7B6C; --bad-soft: #3E1C18; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 var(--f-body); }
+a { color: var(--accent); text-underline-offset: 3px; }
+button { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+h1, h2 { font-family: var(--f-display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h2 { font-size: 1.5rem; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.label { font: 500 0.72rem var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+header.top { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding-block: 18px; border-bottom: 1px solid var(--rule-strong); }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 1.35rem; }
+.brand img { width: 30px; height: 30px; border-radius: 7px; }
+.live { display: inline-flex; align-items: center; gap: 8px; font: 500 0.8rem var(--f-mono); color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rule-strong); }
+.live.ok .dot { background: var(--good); box-shadow: 0 0 0 3px var(--good-soft); }
+.live.err .dot { background: var(--bad); }
+.links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.88rem; }
+section { padding-block: 32px; }
+.intro { color: var(--muted); max-width: 46em; margin: 8px 0 0; }
+.deals { display: grid; gap: 16px; margin-top: 20px; }
+.deal { background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: 8px; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.deal > * { min-width: 0; }
+.deal-head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.deal-head h3 { margin: 0; font-family: var(--f-display); font-size: 1.15rem; }
+.chip { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 10px; font: 600 0.75rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid; }
+.chip.good { color: var(--good); background: var(--good-soft); border-color: var(--good); }
+.chip.warn { color: var(--warn); background: var(--warn-soft); border-color: var(--warn); }
+.chip.bad { color: var(--bad); background: var(--bad-soft); border-color: var(--bad); }
+.chip.muted { color: var(--muted); border-color: var(--rule-strong); }
+.tranches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tr { border: 1px solid var(--rule-strong); border-radius: 6px; padding: 8px 10px; min-width: 0; }
+.tr .t { font: 500 0.68rem var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.tr .s { font-weight: 600; }
+.tr .a { font: 0.8rem var(--f-mono); color: var(--muted); }
+.tr.Released { background: var(--good-soft); border-color: var(--good); } .tr.Released .s { color: var(--good); }
+.tr.Frozen, .tr.Refunded { background: var(--bad-soft); border-color: var(--bad); } .tr.Frozen .s, .tr.Refunded .s { color: var(--bad); }
+.tr.Reported { background: var(--warn-soft); border-color: var(--warn); } .tr.Reported .s { color: var(--warn); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 0.86rem; margin-top: 12px; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; font-family: var(--f-mono); overflow-wrap: anywhere; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th { text-align: left; font: 500 0.68rem var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 6px; border-bottom: 1px solid var(--rule-strong); white-space: nowrap; }
+td { padding: 8px 6px; border-bottom: 1px solid var(--rule); }
+td.num, th.num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.freeze td { background: var(--bad-soft); } tr.explain td { background: var(--warn-soft); }
+.r-freeze { color: var(--bad); font-weight: 600; } .r-explain { color: var(--warn); font-weight: 600; } .r-fair { color: var(--good); }
+.empty { background: var(--sheet); border: 1px dashed var(--rule-strong); border-radius: 8px; padding: 24px; color: var(--muted); }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--rule-strong); border-radius: 10px; background: var(--sheet); margin-top: 16px; }
+.seg button { border: 0; background: transparent; color: var(--muted); padding: 7px 12px; border-radius: 7px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.play { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-top: 16px; }
+.play > * { min-width: 0; }
+.panel { background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: 8px; padding: 16px; }
+input.price { width: 8.5em; text-align: right; font: 0.86rem var(--f-mono); padding: 4px 6px; border: 1px solid var(--rule-strong); border-radius: 5px; background: var(--paper); color: var(--ink); }
+.findings { margin: 12px 0 0; padding-left: 18px; font-size: 0.9rem; }
+.note { color: var(--muted); font-size: 0.82rem; margin-top: 10px; }
+footer { border-top: 1px solid var(--rule-strong); padding-block: 24px 40px; color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 820px) { .deal, .play { grid-template-columns: 1fr; } .links { margin-left: 0; } }
+@media (max-width: 480px) { .tranches { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <div class="brand"><img src="logo.png" alt="">Telisik</div>
+  <span class="live" id="live"><span class="dot"></span><span id="live-text">Connecting to Monad testnet…</span></span>
+  <nav class="links" id="links"></nav>
+</header>
+
+<main class="wrap">
+  <section>
+    <p class="label">Live on Monad testnet</p>
+    <h1 style="font-size:clamp(1.7rem,3.6vw,2.4rem);margin-top:6px">Investor money moves only when the numbers are true.</h1>
+    <p class="intro">Each deal below locks funds in TelisikEscrow. The startup submits its spending report, the Telisik verifier checks every line item against market prices, writes the result to AttestationRegistry, and the GP releases or freezes the next tranche. Tranche states and attestations are read directly from the contracts.</p>
+    <div class="deals" id="deals"><div class="empty">Loading deals from the chain…</div></div>
+  </section>
+
+  <section id="check">
+    <p class="label">Try the check</p>
+    <h2>Edit a price and watch the decision change</h2>
+    <p class="intro">Runs in your browser with the same rules the verifier uses: above 2× the market median needs an explanation, above 5× freezes, and vendors younger than 30 days are flagged. Market medians come from an example reference set.</p>
+    <div class="seg" role="group" aria-label="Sample report">
+      <button type="button" id="s-honest" data-sample="honest" aria-pressed="false">Honest report</button>
+      <button type="button" id="s-explained" data-sample="explained" aria-pressed="false">Explainable markup</button>
+      <button type="button" id="s-markup" data-sample="markup" aria-pressed="true">Marked-up report</button>
+    </div>
+    <div class="play">
+      <div class="panel">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Reported / unit (Rp)</th><th class="num">Market median</th><th class="num">Ratio</th></tr></thead>
+            <tbody id="play-rows"></tbody>
+          </table>
+        </div>
+        <p class="note" id="play-vendor"></p>
+      </div>
+      <div class="panel" aria-live="polite">
+        <div id="play-decision"></div>
+        <ul class="findings" id="play-findings"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Telisik · built for Monad Metropolis 2026 · deal names and figures are fictional demo data · dUSDC is a test-only stand-in for USDC.
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

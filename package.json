@@ -1,0 +1,23 @@
+{
+  "name": "telisik",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI verification of startup spending reports with tranche escrow on Monad",
+  "scripts": {
+    "compile": "node scripts/compile.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "demo": "node scripts/demo.mjs",
+    "app": "node app/server.mjs",
+    "web:build": "node scripts/build-web.mjs",
+    "web:serve": "python -m http.server 8080 --directory web"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "@typesafe-ai/sdk": "^0.6.0",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "solc": "^0.8.24",
+    "viem": "^2.57.5"
+  }
+}

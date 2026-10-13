@@ -1,0 +1,30 @@
+{
+  "_note": "Example reference set for the Telisik demo. Medians are illustrative, not live marketplace data.",
+  "bottle-a-600": {
+    "name": "Bottle, brand A, 600 ml",
+    "aliases": ["Botol merk A 600 ml", "Botol Merk-A 600ml", "bottle brand a 600ml"],
+    "unit": "pcs",
+    "medianRp": 10000,
+    "lowRp": 8500,
+    "highRp": 12000,
+    "source": "example reference set"
+  },
+  "carton-std": {
+    "name": "Shipping carton",
+    "aliases": ["Kardus kemasan", "kardus"],
+    "unit": "pcs",
+    "medianRp": 5000,
+    "lowRp": 4200,
+    "highRp": 6000,
+    "source": "example reference set"
+  },
+  "label-sticker": {
+    "name": "Label sticker",
+    "aliases": ["Stiker label", "label"],
+    "unit": "pcs",
+    "medianRp": 750,
+    "lowRp": 600,
+    "highRp": 900,
+    "source": "example reference set"
+  }
+}
