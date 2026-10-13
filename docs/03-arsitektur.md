@@ -82,3 +82,57 @@ sequenceDiagram
     Note over ESC: US$200rb tetap aman
     REG-->>GP: 7. Dashboard GP dan LP membaca catatan
 ```
+
+## Mode deployment
+
+Mesin verifikasi (ekstraksi, rekonsiliasi, anomali, Jev, guardrail) tidak bergantung pada chain mana pun. Hanya dua komponen yang bergantung pada blockchain, yaitu escrow dan catatan audit, dan keduanya bisa diganti tanpa mengubah mesin verifikasi.
+
+| Mode | Uang disimpan di | Catatan audit | Cocok untuk |
+| --- | --- | --- | --- |
+| A. Monad | TelisikEscrow (USDC) | AttestationRegistry | VC kripto, hibah ekosistem Monad |
+| B. Chain EVM lain | Kontrak yang sama di Ethereum, Base, Arbitrum, dll. | Kontrak yang sama | VC kripto di ekosistem lain |
+| C. Tanpa blockchain | Rekening escrow di bank kustodian (rupiah atau dolar) | Log append-only, ditandatangani dengan tanda tangan elektronik tersertifikasi dan diberi cap waktu independen | VC tradisional, CVC BUMN, pasar Indonesia |
+| C+. Hibrida | Rekening escrow bank | Seperti mode C, plus hash dicatat di chain publik sebagai bukti tambahan | Klien yang ingin bukti publik tanpa memindahkan uang ke chain |
+
+```mermaid
+flowchart LR
+    V["Mesin verifikasi<br/>sama di semua mode"] --> EA{{"EscrowAdapter"}}
+    V --> AL{{"AuditLog"}}
+    EA --> M["MonadEscrow / EvmEscrow<br/>mode A, B"]
+    EA --> BK["BankEscrow<br/>instruksi ke bank kustodian, mode C"]
+    AL --> OR["OnchainRegistry<br/>mode A, B"]
+    AL --> SL["SignedTimestampLog<br/>mode C, opsional anchor hash, mode C+"]
+```
+
+### Antarmuka
+
+Mesin verifikasi hanya memanggil dua antarmuka ini. Mode dipilih lewat konfigurasi.
+
+```ts
+interface EscrowAdapter {
+  release(dealId: string, tranche: number): Promise<Receipt>;
+  freeze(dealId: string, reason: string): Promise<Receipt>;
+  refund(dealId: string): Promise<Receipt>;
+  status(dealId: string): Promise<DealStatus>;
+}
+
+interface AuditLog {
+  record(subject: string, dataHash: string, result: VerificationResult): Promise<Proof>;
+  verify(proof: Proof): Promise<boolean>; // siapa pun bisa mengecek catatan tidak diubah
+}
+
+// Implementasi:
+//   Mode A/B: MonadEscrow, EvmEscrow (chain EVM apa pun), OnchainRegistry
+//   Mode C:   BankEscrow (instruksi ke bank kustodian), SignedTimestampLog
+//   Mode C+:  BankEscrow + SignedTimestampLog yang juga mencatat hash ke chain publik
+```
+
+### Yang berubah tanpa blockchain
+
+- **Escrow butuh perantara berizin.** Pencairan berupa instruksi ke bank kustodian atau wali amanat, dengan biaya dan waktu proses dalam hitungan hari.
+- **Kepercayaan pada catatan audit** berpindah ke penyedia tanda tangan elektronik dan cap waktu, bukan jaringan publik.
+- **Telisik tidak pernah memegang uang klien.** Di semua mode, dana berada di kontrak escrow atau rekening escrow lembaga berizin, bukan di rekening Telisik.
+
+### Catatan untuk hackathon dan grant
+
+Versi hackathon memakai mode A. Sebelum menerima grant atau residency dari Monad Foundation, cek kewajibannya di Rules & Guidelines (hak kekayaan intelektual, komitmen membangun di Monad), dan sampaikan secara terbuka bahwa Telisik dirancang multi-mode.
