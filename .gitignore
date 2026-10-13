@@ -1,0 +1,30 @@
+# Rahasia: jangan pernah di-commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependensi dan hasil build
+node_modules/
+dist/
+build/
+out/
+.next/
+cache/
+__pycache__/
+.venv/
+
+# Foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# Data portofolio asli (demo hanya pakai data fiktif)
+data-private/
+
+# OS dan editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
