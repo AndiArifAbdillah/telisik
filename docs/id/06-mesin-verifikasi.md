@@ -1,5 +1,7 @@
 # 06 Mesin verifikasi
 
+**Bahasa Indonesia** · [English](../en/06-verification-engine.md)
+
 Setiap komponen punya peran tetap. LLM mengekstrak angka dari dokumen. Kode menghitung selisih. Model ML mencari pola janggal. Jev memberi skor dan rekomendasi. Keputusan uang diambil oleh guardrail dan GP, bukan oleh AI.
 
 ## Alur

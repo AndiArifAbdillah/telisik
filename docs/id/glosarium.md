@@ -1,5 +1,7 @@
 # Glosarium
 
+**Bahasa Indonesia** · [English](../en/glossary.md)
+
 | Istilah | Arti singkat | Di Telisik |
 | --- | --- | --- |
 | **VC (venture capital)** | Perusahaan yang menanam uang ke startup muda dengan imbalan saham | Pelanggan utama |
@@ -23,6 +25,7 @@
 | **Jev** | Model keputusan TypeSafe yang menjawab pertanyaan pilihan, skor, atau ya/tidak beserta probabilitasnya | Skor risiko dan rekomendasi tindakan |
 | **Guardrail** | Aturan kode biasa yang menimpa keputusan AI | Mis. rasio > 1,5 selalu dibekukan |
 | **Rekonsiliasi** | Mencocokkan dua catatan, mis. laporan pendapatan dengan mutasi bank | Pemeriksaan inti |
+| **Mark-up** | Melaporkan harga jauh di atas harga barang sebenarnya | Mis. botol Rp10.000 dilaporkan Rp500.000 |
 | **Round-tripping** | Uang yang diputar balik antar-pihak supaya pendapatan terlihat besar | Salah satu pola yang dicari model anomali |
 | **Prompt injection** | Teks tersembunyi di dokumen yang mencoba menyuruh AI melakukan sesuatu | Dicegah dengan memperlakukan dokumen sebagai data |
 | **LKPP** | Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah, pengelola data pengadaan terbuka | Sumber data demo pengadaan publik |

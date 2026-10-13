@@ -1,5 +1,7 @@
 # 04 Sumber data
 
+**Bahasa Indonesia** · [English](../en/04-data-sources.md)
+
 Nilai Telisik bergantung pada data yang tidak bisa diubah startup. Kalau AI hanya membaca PDF dari startup, AI juga bisa tertipu, seperti investor eFishery. Treasury onchain dan harga pasar paling mudah diakses, jadi keduanya masuk MVP.
 
 | Sumber | Yang dibuktikan | Cara akses | Fase |

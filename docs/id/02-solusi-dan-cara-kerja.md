@@ -1,5 +1,7 @@
 # 02 Solusi dan cara kerja
 
+**Bahasa Indonesia** · [English](../en/02-solution-and-how-it-works.md)
+
 Telisik terdiri dari empat modul. Dua modul pertama bisa dijual tanpa escrow, misalnya untuk due diligence.
 
 1. **Verifikasi laporan:** angka di laporan startup dicocokkan dengan data yang tidak bisa mereka ubah (mutasi bank, payment gateway, treasury onchain).

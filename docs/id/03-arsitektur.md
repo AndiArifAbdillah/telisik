@@ -1,5 +1,7 @@
 # 03 Arsitektur
 
+**Bahasa Indonesia** · [English](../en/03-architecture.md)
+
 Dana hanya cair setelah verifikasi lolos dan GP menyetujui. Data asli tetap offchain. Monad menyimpan hash, hasil verifikasi, dan dana USDC.
 
 ## Diagram komponen

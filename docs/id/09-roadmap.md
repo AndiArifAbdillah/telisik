@@ -1,5 +1,7 @@
 # 09 Roadmap
 
+**Bahasa Indonesia** · [English](../en/09-roadmap.md)
+
 Mainnet berbayar paling cepat April 2027, setelah tiga gerbang keputusan lolos. Jadwal ini usulan, dihitung dari 13 Oktober 2026.
 
 ```mermaid

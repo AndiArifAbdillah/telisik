@@ -1,5 +1,7 @@
 # 08 Risiko
 
+**Bahasa Indonesia** · [English](../en/08-risks.md)
+
 Risiko terbesar ada di bisnis, bukan di teknis: VC lambat mengadopsi alat baru, dan data bank sulit diakses. Karena itu urutan pasar dimulai dari VC kripto.
 
 | Risiko | Jenis | Mitigasi |

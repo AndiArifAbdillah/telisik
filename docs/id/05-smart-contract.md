@@ -1,5 +1,7 @@
 # 05 Smart contract
 
+**Bahasa Indonesia** · [English](../en/05-smart-contracts.md)
+
 Dua kontrak di Monad. **TelisikEscrow** menahan dana dan mencairkannya per tranche. **AttestationRegistry** mencatat setiap hasil verifikasi secara permanen.
 
 ## Jaringan dan token

@@ -1,5 +1,7 @@
 # 01 Masalah
 
+**Bahasa Indonesia** · [English](../en/01-problem.md)
+
 Uang investor dan uang publik mengalir berdasarkan laporan yang tidak diperiksa terhadap kenyataan, sehingga kecurangan baru ketahuan setelah kerugian terjadi.
 
 ## Tiga kasus

@@ -1,82 +1,91 @@
 # Telisik
 
-> Dana hanya cair kalau laporannya terbukti benar.
+[Bahasa Indonesia](README.id.md) · **English**
 
-Telisik memeriksa setiap laporan keuangan dan setiap harga belanja terhadap data sumber yang tidak bisa diubah startup. Dana investasi dicairkan bertahap lewat escrow di [Monad](https://monad.xyz), dan hanya cair kalau lolos verifikasi dan disetujui GP. Pasar awalnya VC kripto. Pengadaan publik menjadi demo kedua.
+> Investor money moves only when the numbers are true.
 
-**Status:** perencanaan, 13 Oktober 2026. "Telisik" masih nama kerja.
+Telisik ("to examine closely" in Indonesian) checks every spending report and every line-item price against reality. Investor funds are released in tranches from an escrow on [Monad](https://monad.xyz), and only after verification passes and the GP approves. The first market is crypto VCs. Public procurement is the second demo.
 
-## Masalah
+**Status:** planning and MVP build during the Monad Metropolis hackathon (October 2026). "Telisik" is a working name.
 
-| Kasus | Yang terjadi | Pemeriksaan yang hilang |
+## Problem
+
+Startups spend investor money and report it back, and nobody checks those reports against reality. A bottle that costs Rp10,000 can be reported as Rp500,000, and the gap disappears through a friendly vendor.
+
+| Case | What happened | Missing check |
 | --- | --- | --- |
-| eFishery (investor swasta) | Pendapatan Jan–Sep 2024 diduga dilaporkan sekitar 4,8x dari catatan internal | Laporan vs data sumber |
-| Kaus kaki BGN untuk MBG (anggaran publik) | Pengadaan sekitar Rp6,9 miliar, hingga Rp100 ribu per pasang | Harga vs pasar |
+| Spending markup (example) | A Rp10,000 bottle reported at Rp500,000 each (50x) | Line-item price vs market |
+| eFishery (private investors) | Jan–Sep 2024 revenue reportedly overstated about 4.8x versus internal records | Report vs source data |
+| Socks bought by BGN for the MBG program (public budget) | About Rp6.9B of socks, at up to Rp100k per pair | Price vs market |
 
-Detail dan sumbernya ada di [docs/01-masalah.md](docs/01-masalah.md).
+Details and sources: [docs/en/01-problem.md](docs/en/01-problem.md).
 
-## Cara kerja singkat
+## How it works
 
 ```mermaid
 flowchart LR
-    S["Data sumber<br/>bank, gateway, chain, harga pasar"] --> V["Verifikasi AI<br/>ekstraksi, rekonsiliasi, Jev"]
-    V --> G{"Guardrail"}
-    G -->|lolos| P["Persetujuan GP<br/>multisig"]
-    G -->|selisih besar| F["Bekukan"]
-    P --> E["TelisikEscrow<br/>di Monad"]
+    S["Report + source data<br/>invoices, bank, chain, market prices"] --> V["AI verification<br/>extraction, price check, Jev"]
+    V --> G{"Guardrails"}
+    G -->|pass| P["GP approval<br/>multisig"]
+    G -->|large markup| F["Freeze"]
+    P --> E["TelisikEscrow<br/>on Monad"]
     F --> E
-    E --> W["Wallet startup"]
-    V -. dicatat .-> R["AttestationRegistry<br/>di Monad"]
+    E --> W["Startup wallet"]
+    V -. recorded .-> R["AttestationRegistry<br/>on Monad"]
 ```
 
-Prinsipnya: **AI memeriksa, smart contract menjaga uang, manusia memutuskan, dan blockchain jadi saksi.**
+The principle: **AI checks, the smart contract guards the money, humans decide, and the blockchain is the witness.** Markups are flagged, not judged: the startup can explain (custom printing, remote shipping), and the GP's decision and reason are recorded onchain.
 
-## Mode deployment
+## Deployment modes
 
-Mesin verifikasi tidak bergantung pada Monad. Hanya escrow dan catatan audit yang bergantung pada chain, dan keduanya dipasang lewat adapter.
+The verification engine does not depend on Monad. Only the escrow and the audit log touch a chain, and both plug in through adapters.
 
-| Mode | Uang | Catatan audit | Untuk |
+| Mode | Money | Audit log | For |
 | --- | --- | --- | --- |
-| A. Monad (versi hackathon) | TelisikEscrow, USDC | AttestationRegistry | VC kripto, hibah ekosistem |
-| B. Chain EVM lain | Kontrak yang sama | Kontrak yang sama | VC kripto di ekosistem lain |
-| C. Tanpa blockchain | Rekening escrow bank kustodian | Log bertanda tangan elektronik + cap waktu | VC tradisional, CVC BUMN, pasar Indonesia |
+| A. Monad (hackathon version) | TelisikEscrow, USDC | AttestationRegistry | Crypto VCs, ecosystem grants |
+| B. Another EVM chain | Same contracts | Same contracts | Crypto VCs on other ecosystems |
+| C. No blockchain | Escrow account at a custodian bank | Electronically signed, timestamped log | Traditional VCs, state-owned CVCs, Indonesian market |
 
-Detail dan antarmukanya ada di [03 Arsitektur, Mode deployment](docs/03-arsitektur.md#mode-deployment).
+Details and interfaces: [03 Architecture, Deployment modes](docs/en/03-architecture.md#deployment-modes).
 
-## Dokumentasi
+## Documentation
 
-| Dokumen | Isi |
+| Document | Contents |
 | --- | --- |
-| [01 Masalah](docs/01-masalah.md) | Kasus eFishery, kaus kaki MBG, TaniHub, dan celah pemeriksaannya |
-| [02 Solusi dan cara kerja](docs/02-solusi-dan-cara-kerja.md) | Empat modul, prinsip desain, contoh skenario AquaTech |
-| [03 Arsitektur](docs/03-arsitektur.md) | Diagram komponen, diagram urutan, mode deployment (Monad, EVM lain, tanpa blockchain) |
-| [04 Sumber data](docs/04-sumber-data.md) | Data yang dipakai, cara akses, fase |
-| [05 Smart contract](docs/05-smart-contract.md) | Spesifikasi TelisikEscrow dan AttestationRegistry |
-| [06 Mesin verifikasi](docs/06-mesin-verifikasi.md) | Pemeriksaan, ambang, peran Jev, guardrail |
-| [07 Pasar dan bisnis](docs/07-pasar-dan-bisnis.md) | Segmen, model bisnis, kompetitor, catatan Danantara |
-| [08 Risiko](docs/08-risiko.md) | Risiko teknis, hukum, bisnis, dan mitigasinya |
-| [09 Roadmap](docs/09-roadmap.md) | Fase, gerbang keputusan, checklist |
-| [10 Pitch deck](docs/10-pitch-deck.md) | Susunan slide |
-| [Glosarium](docs/glosarium.md) | VC, GP, LP, tranche, escrow, multisig, dan istilah lain |
+| [01 Problem](docs/en/01-problem.md) | eFishery, MBG socks, TaniHub, and the missing checks |
+| [02 Solution and how it works](docs/en/02-solution-and-how-it-works.md) | Four modules, design principles, the AquaTech walkthrough |
+| [03 Architecture](docs/en/03-architecture.md) | Component diagram, sequence diagram, deployment modes (Monad, other EVM, no blockchain) |
+| [04 Data sources](docs/en/04-data-sources.md) | Data used, how it is accessed, which phase |
+| [05 Smart contracts](docs/en/05-smart-contracts.md) | TelisikEscrow and AttestationRegistry spec |
+| [06 Verification engine](docs/en/06-verification-engine.md) | Checks, thresholds, Jev's role, guardrails |
+| [07 Market and business](docs/en/07-market-and-business.md) | Segments, business model, competitors, note on Danantara |
+| [08 Risks](docs/en/08-risks.md) | Technical, legal and business risks with mitigations |
+| [09 Roadmap](docs/en/09-roadmap.md) | Phases, decision gates, checklist |
+| [10 Pitch deck](docs/en/10-pitch-deck.md) | Slide outline |
+| [Glossary](docs/en/glossary.md) | VC, GP, LP, tranche, escrow, multisig and other terms |
 
-## Rencana struktur repo
+Indonesian versions are in [docs/id/](docs/id/).
 
-Folder kode belum dibuat. Rencananya:
+## Planned repo layout
+
+Code folders are not created yet. The plan:
 
 ```
 telisik/
-├── docs/          dokumen perencanaan (sudah ada)
-├── contracts/     TelisikEscrow dan AttestationRegistry (Solidity, Foundry)
-├── verifier/      mesin verifikasi: ekstraksi, rekonsiliasi, Jev, guardrail (TypeScript)
-├── dashboard/     dashboard GP dan LP
-└── demo-data/     data fiktif: startup jujur, startup "ala eFishery", data pengadaan
+├── docs/
+│   ├── en/        English documents
+│   └── id/        Indonesian documents
+├── contracts/     TelisikEscrow and AttestationRegistry (Solidity, Foundry)
+├── verifier/      verification engine: extraction, price check, Jev, guardrails (TypeScript)
+├── dashboard/     GP and LP dashboard
+└── demo-data/     fictional data: honest report, marked-up report, procurement data
 ```
 
-## Karya terkait
+## Related work
 
-Pola keputusan Jev + guardrail + pembayaran x402 diuji lebih dulu di prototipe `warung-agents`. Prototipe ini merupakan port ke Monad Testnet dari workshop [cathlynshanice/warung-agents](https://github.com/cathlynshanice/warung-agents).
+The Jev + guardrails + x402 payment pattern was first tested in the `warung-agents` prototype, a Monad Testnet port of the [cathlynshanice/warung-agents](https://github.com/cathlynshanice/warung-agents) workshop.
 
-## Jaringan
+## Network
 
 | | Monad Testnet | Monad Mainnet |
 | --- | --- | --- |
@@ -84,4 +93,4 @@ Pola keputusan Jev + guardrail + pembayaran x402 diuji lebih dulu di prototipe `
 | USDC | `0x534b2f3A21130d7a60830c2Df862319e593943A3` | `0x754704Bc059F8C67012fEd69BC8A327a5aafb603` |
 | Explorer | [testnet.monadvision.com](https://testnet.monadvision.com) | |
 
-Sumber: [Monad Docs, x402](https://docs.monad.xyz/guides/x402) dan [Monad Docs, testnet](https://docs.monad.xyz/developer-essentials/testnets).
+Sources: [Monad Docs, x402](https://docs.monad.xyz/guides/x402) and [Monad Docs, testnets](https://docs.monad.xyz/developer-essentials/testnets).

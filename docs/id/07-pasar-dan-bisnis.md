@@ -1,5 +1,7 @@
 # 07 Pasar dan bisnis
 
+**Bahasa Indonesia** · [English](../en/07-market-and-business.md)
+
 Mulai dari VC kripto, karena dana mereka sudah dalam USDC dan treasury startupnya ada di chain. Mereka bisa diverifikasi tanpa integrasi bank, dan tidak terbentur aturan bahwa pembayaran domestik di Indonesia wajib rupiah.
 
 ## Segmen
