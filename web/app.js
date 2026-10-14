@@ -118,7 +118,10 @@ async function refresh() {
 // ---- playground ----
 const samples = {};
 for (const s of ["honest", "explained", "markup"]) samples[s] = await fetch(`data/reports/${s}.json`).then((r) => r.json());
-let current = structuredClone(samples.markup);
+const params = new URLSearchParams(location.search);
+let current = structuredClone(samples[params.get("sample")] ?? samples.markup);
+if (Number(params.get("price")) > 0) current.items[0].unitPriceRp = Number(params.get("price"));
+document.querySelectorAll("[data-sample]").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.sample === (samples[params.get("sample")] ? params.get("sample") : "markup"))));
 
 function renderPlay() {
   const check = checkReport(current, prices);
