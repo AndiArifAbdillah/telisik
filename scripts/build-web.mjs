@@ -20,7 +20,7 @@ fs.writeFileSync(path.join(web, "abi.json"), JSON.stringify({
   AttestationRegistry: a.AttestationRegistry.abi,
   DemoUSDC: a.DemoUSDC.abi,
 }));
-fs.copyFileSync(path.join(ROOT, "verifier", "engine.mjs"), path.join(web, "engine.mjs"));
+fs.copyFileSync(path.join(ROOT, "verifier", "engine.mjs"), path.join(web, "engine.js"));
 fs.mkdirSync(path.join(web, "data", "reports"), { recursive: true });
 fs.copyFileSync(path.join(ROOT, "data", "market-prices.json"), path.join(web, "data", "market-prices.json"));
 for (const f of fs.readdirSync(path.join(ROOT, "data", "reports"))) {
@@ -30,4 +30,4 @@ if (!fs.existsSync(path.join(web, "runs", "index.json"))) {
   fs.mkdirSync(path.join(web, "runs"), { recursive: true });
   fs.writeFileSync(path.join(web, "runs", "index.json"), "[]");
 }
-console.log("web/ is ready: config.json, abi.json, engine.mjs, data/, runs/");
+console.log("web/ is ready: config.json, abi.json, engine.js, data/, runs/");

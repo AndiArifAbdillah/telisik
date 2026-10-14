@@ -1,5 +1,5 @@
 import { createPublicClient, http, formatUnits, defineChain } from "https://cdn.jsdelivr.net/npm/viem@2.21.55/+esm";
-import { checkReport, applyGuardrails } from "./engine.mjs";
+import { checkReport, applyGuardrails } from "./engine.js";
 
 const STATES = ["Locked", "Reported", "Released", "Frozen", "Refunded"];
 const DECISION = {
@@ -62,6 +62,7 @@ function dealCard({ id, deal, tranches, attestation }) {
       <h3>Deal #${id}${run ? ` · ${esc(run.report.startup)}` : ""}</h3>
       ${decision ? `<span class="chip ${decision.cls}">${decision.text}</span>` : ""}
       ${frozen ? `<span class="chip bad">Deal frozen</span>` : ""}
+      ${run?.txs?.override ? `<span class="chip muted">Released by GP override</span>` : ""}
       <span class="label">${run ? esc(run.scenario) + " report" : ""}</span>
     </div>`;
   const trs = tranches.map((t, i) => {

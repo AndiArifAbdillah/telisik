@@ -39,7 +39,9 @@ export function artifacts() {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
-export const DEPLOYMENT_FILE = path.join(ROOT, "deployments", "monad-testnet.json");
+// A local test run points these elsewhere so it never touches the testnet deployment or web/runs.
+export const DEPLOYMENT_FILE = process.env.TELISIK_DEPLOYMENT_FILE || path.join(ROOT, "deployments", "monad-testnet.json");
+export const RUNS_DIR = process.env.TELISIK_RUNS_DIR || path.join(ROOT, "web", "runs");
 
 export function deployment() {
   if (!fs.existsSync(DEPLOYMENT_FILE)) throw new Error("Run `npm run deploy` first.");

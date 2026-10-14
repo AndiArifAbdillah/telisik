@@ -5,7 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { keccak256, parseUnits, stringToHex, formatUnits } from "viem";
-import { ROOT, EXPLORER, artifacts, deployment, publicClient, roles, send } from "../shared/chain.mjs";
+import { ROOT, EXPLORER, RUNS_DIR, artifacts, deployment, publicClient, roles, send } from "../shared/chain.mjs";
 import { applyGuardrails, canonicalJson, checkReport } from "../verifier/engine.mjs";
 import { askJev } from "../verifier/jev.mjs";
 
@@ -90,7 +90,7 @@ const escrowBalance = await publicClient.readContract({ ...token, functionName: 
 console.log(`\nDeal #${dealId}: released ${formatUnits(deal[4], 6)} dUSDC, frozen=${deal[5]}, held in escrow ${formatUnits(escrowBalance, 6)} dUSDC (all deals)`);
 console.log(`Escrow: ${EXPLORER}/address/${escrow.address}`);
 
-const runsDir = path.join(ROOT, "web", "runs");
+const runsDir = RUNS_DIR;
 fs.mkdirSync(runsDir, { recursive: true });
 fs.writeFileSync(path.join(runsDir, `deal-${dealId}.json`), JSON.stringify({ ...result, resultHash, subject, txs }, (k, v) => (typeof v === "bigint" ? v.toString() : v), 2));
 const indexFile = path.join(runsDir, "index.json");
