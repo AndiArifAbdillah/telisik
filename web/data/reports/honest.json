@@ -1,0 +1,11 @@
+{
+  "startup": "AquaTech",
+  "period": "2026-09",
+  "title": "Use-of-funds report, tranche 2",
+  "vendor": { "name": "PT Sumber Kemas", "registeredDaysAgo": 1460 },
+  "items": [
+    { "name": "Botol merk A 600 ml", "qty": 1000, "unitPriceRp": 10500 },
+    { "name": "Kardus kemasan", "qty": 1000, "unitPriceRp": 5200 },
+    { "name": "Stiker label", "qty": 1000, "unitPriceRp": 800 }
+  ]
+}

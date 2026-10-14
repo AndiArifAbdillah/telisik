@@ -1,0 +1,86 @@
+{
+  "scenario": "honest",
+  "dealId": 1,
+  "tranche": 2,
+  "dataHash": "0xbb273bcf04f777371818273bc84917358d53644c3156f2b8d17754a2d41cafcf",
+  "decision": "pass",
+  "riskScore": 0,
+  "reason": "rules only",
+  "model": "rules-v1",
+  "jev": null,
+  "check": {
+    "items": [
+      {
+        "name": "Botol merk A 600 ml",
+        "qty": 1000,
+        "unitPriceRp": 10500,
+        "sku": "bottle-a-600",
+        "medianRp": 10000,
+        "lowRp": 8500,
+        "highRp": 12000,
+        "ratio": 1.05,
+        "level": "fair"
+      },
+      {
+        "name": "Kardus kemasan",
+        "qty": 1000,
+        "unitPriceRp": 5200,
+        "sku": "carton-std",
+        "medianRp": 5000,
+        "lowRp": 4200,
+        "highRp": 6000,
+        "ratio": 1.04,
+        "level": "fair"
+      },
+      {
+        "name": "Stiker label",
+        "qty": 1000,
+        "unitPriceRp": 800,
+        "sku": "label-sticker",
+        "medianRp": 750,
+        "lowRp": 600,
+        "highRp": 900,
+        "ratio": 1.07,
+        "level": "fair"
+      }
+    ],
+    "findings": [],
+    "newVendor": false,
+    "gapRp": 750000,
+    "totalRp": 16500000,
+    "ruleDecision": "pass",
+    "ruleRiskScore": 0
+  },
+  "report": {
+    "startup": "AquaTech",
+    "period": "2026-09",
+    "title": "Use-of-funds report, tranche 2",
+    "vendor": {
+      "name": "PT Sumber Kemas",
+      "registeredDaysAgo": 1460
+    },
+    "items": [
+      {
+        "name": "Botol merk A 600 ml",
+        "qty": 1000,
+        "unitPriceRp": 10500
+      },
+      {
+        "name": "Kardus kemasan",
+        "qty": 1000,
+        "unitPriceRp": 5200
+      },
+      {
+        "name": "Stiker label",
+        "qty": 1000,
+        "unitPriceRp": 800
+      }
+    ]
+  },
+  "at": "2026-10-14T02:59:16.705Z",
+  "resultHash": "0x660a476d84bfa24650e169f73b96afd09efa29925f604a8605f2621c36ffa867",
+  "subject": "0x353d052bd96a3ce75f2db75ed54843fa8076360af814ddf2d085f69b05d239e7",
+  "txs": {
+    "release": "0xcc9be74ef1e27a6fc2af7b8b582707c80d07cef74edaba6a2966ef45a988afab"
+  }
+}

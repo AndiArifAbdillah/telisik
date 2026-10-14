@@ -1,0 +1,20 @@
+[
+  {
+    "dealId": 1,
+    "scenario": "honest",
+    "decision": "pass",
+    "file": "deal-1.json"
+  },
+  {
+    "dealId": 2,
+    "scenario": "explained",
+    "decision": "ask_gp",
+    "file": "deal-2.json"
+  },
+  {
+    "dealId": 3,
+    "scenario": "markup",
+    "decision": "freeze",
+    "file": "deal-3.json"
+  }
+]

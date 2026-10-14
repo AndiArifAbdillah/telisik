@@ -10,7 +10,8 @@
     "demo": "node scripts/demo.mjs",
     "web:build": "node scripts/build-web.mjs",
     "web:serve": "node scripts/serve-web.mjs",
-    "test:local": "node scripts/local-test.mjs"
+    "test:local": "node scripts/local-test.mjs",
+    "ship": "npm run compile && npm run deploy && npm run demo -- honest && npm run demo -- explained && npm run demo -- markup && npm run web:build"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2",

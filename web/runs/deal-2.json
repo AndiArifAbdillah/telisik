@@ -1,0 +1,99 @@
+{
+  "scenario": "explained",
+  "dealId": 2,
+  "tranche": 2,
+  "dataHash": "0xf55cc027fbec5e419cc3df83c826999a779ae72b972ad00ea2db6c464274cb0e",
+  "decision": "ask_gp",
+  "riskScore": 2,
+  "reason": "rules only",
+  "model": "rules-v1",
+  "jev": null,
+  "check": {
+    "items": [
+      {
+        "name": "Botol merk A 600 ml",
+        "qty": 1000,
+        "unitPriceRp": 25000,
+        "explanation": "Custom-printed logo; vendor quote attached",
+        "sku": "bottle-a-600",
+        "medianRp": 10000,
+        "lowRp": 8500,
+        "highRp": 12000,
+        "ratio": 2.5,
+        "level": "explain"
+      },
+      {
+        "name": "Kardus kemasan",
+        "qty": 1000,
+        "unitPriceRp": 5200,
+        "sku": "carton-std",
+        "medianRp": 5000,
+        "lowRp": 4200,
+        "highRp": 6000,
+        "ratio": 1.04,
+        "level": "fair"
+      },
+      {
+        "name": "Stiker label",
+        "qty": 1000,
+        "unitPriceRp": 800,
+        "sku": "label-sticker",
+        "medianRp": 750,
+        "lowRp": 600,
+        "highRp": 900,
+        "ratio": 1.07,
+        "level": "fair"
+      }
+    ],
+    "findings": [
+      {
+        "kind": "price",
+        "level": "explain",
+        "item": "Botol merk A 600 ml",
+        "unitPriceRp": 25000,
+        "medianRp": 10000,
+        "ratio": 2.5,
+        "explanation": "Custom-printed logo; vendor quote attached",
+        "source": "example reference set"
+      }
+    ],
+    "newVendor": false,
+    "gapRp": 15250000,
+    "totalRp": 31000000,
+    "ruleDecision": "ask_gp",
+    "ruleRiskScore": 2
+  },
+  "report": {
+    "startup": "AquaTech",
+    "period": "2026-09",
+    "title": "Use-of-funds report, tranche 2",
+    "vendor": {
+      "name": "PT Sumber Kemas",
+      "registeredDaysAgo": 1460
+    },
+    "items": [
+      {
+        "name": "Botol merk A 600 ml",
+        "qty": 1000,
+        "unitPriceRp": 25000,
+        "explanation": "Custom-printed logo; vendor quote attached"
+      },
+      {
+        "name": "Kardus kemasan",
+        "qty": 1000,
+        "unitPriceRp": 5200
+      },
+      {
+        "name": "Stiker label",
+        "qty": 1000,
+        "unitPriceRp": 800
+      }
+    ]
+  },
+  "at": "2026-10-14T02:59:29.625Z",
+  "resultHash": "0xf7848824c9bbb4f63a7b462b3dbb2ccb63dcf88737189696fbb5b4d8a7fbdfbc",
+  "subject": "0x304519f2a12158d0ebcf8c40c70d5f76940fe419d0f96ec0136e582e1a8ea1d2",
+  "txs": {
+    "override": "0xeed18053f7db00ede0f7460e64ac80d06e6f6ad9898c81caa059e896bec3be11"
+  }
+}

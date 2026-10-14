@@ -1,0 +1,15 @@
+{
+  "chainId": 10143,
+  "rpc": "https://testnet-rpc.monad.xyz",
+  "explorer": "https://testnet.monadvision.com",
+  "contracts": {
+    "AttestationRegistry": "0x9fbd665a044dc61f3f61644930a7832407214a1b",
+    "TelisikEscrow": "0x6692eb748e0a97361bd42de8fb805c14438befdd",
+    "DemoUSDC": "0x2e4e7c4c6b82f41899c93f7c43f786fa84182681"
+  },
+  "roles": {
+    "gp": "0xD6F9Dbd7F0C1485e42Da0D01B82B265E3e2Eb30F",
+    "verifier": "0xdb775C77779157254720310EC35DF0Da2077ce80",
+    "startup": "0xd54619B9Fcee88802302A7781AAF464d327D9565"
+  }
+}

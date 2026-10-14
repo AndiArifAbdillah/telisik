@@ -1,0 +1,102 @@
+{
+  "scenario": "markup",
+  "dealId": 3,
+  "tranche": 2,
+  "dataHash": "0xa73e830d9aea4a22525be49d39f2d05b2b3484f7382b083bcc7d62c957c25fae",
+  "decision": "freeze",
+  "riskScore": 4,
+  "reason": "price far above market",
+  "model": "rules-v1",
+  "jev": null,
+  "check": {
+    "items": [
+      {
+        "name": "Botol merk A 600 ml",
+        "qty": 1000,
+        "unitPriceRp": 500000,
+        "sku": "bottle-a-600",
+        "medianRp": 10000,
+        "lowRp": 8500,
+        "highRp": 12000,
+        "ratio": 50,
+        "level": "freeze"
+      },
+      {
+        "name": "Kardus kemasan",
+        "qty": 1000,
+        "unitPriceRp": 6000,
+        "sku": "carton-std",
+        "medianRp": 5000,
+        "lowRp": 4200,
+        "highRp": 6000,
+        "ratio": 1.2,
+        "level": "fair"
+      },
+      {
+        "name": "Stiker label",
+        "qty": 1000,
+        "unitPriceRp": 800,
+        "sku": "label-sticker",
+        "medianRp": 750,
+        "lowRp": 600,
+        "highRp": 900,
+        "ratio": 1.07,
+        "level": "fair"
+      }
+    ],
+    "findings": [
+      {
+        "kind": "price",
+        "level": "freeze",
+        "item": "Botol merk A 600 ml",
+        "unitPriceRp": 500000,
+        "medianRp": 10000,
+        "ratio": 50,
+        "explanation": null,
+        "source": "example reference set"
+      },
+      {
+        "kind": "vendor",
+        "vendor": "PT XYZ Makmur",
+        "registeredDaysAgo": 14
+      }
+    ],
+    "newVendor": true,
+    "gapRp": 491050000,
+    "totalRp": 506800000,
+    "ruleDecision": "freeze",
+    "ruleRiskScore": 4
+  },
+  "report": {
+    "startup": "AquaTech",
+    "period": "2026-09",
+    "title": "Use-of-funds report, tranche 2",
+    "vendor": {
+      "name": "PT XYZ Makmur",
+      "registeredDaysAgo": 14
+    },
+    "items": [
+      {
+        "name": "Botol merk A 600 ml",
+        "qty": 1000,
+        "unitPriceRp": 500000
+      },
+      {
+        "name": "Kardus kemasan",
+        "qty": 1000,
+        "unitPriceRp": 6000
+      },
+      {
+        "name": "Stiker label",
+        "qty": 1000,
+        "unitPriceRp": 800
+      }
+    ]
+  },
+  "at": "2026-10-14T02:59:40.300Z",
+  "resultHash": "0x5de7921f68a36822c0c175cc370db948e17667b8d4143fd1dcdf48b266f1fefb",
+  "subject": "0x87f8c9eda79f41e23ab37f8a92622cdebe1d102002d4601718e4498468e40858",
+  "txs": {
+    "freeze": "0x18911f03567a0f5eb43345eb0b71ac93043c50095793c9e17ec010a5d593d6f0"
+  }
+}
